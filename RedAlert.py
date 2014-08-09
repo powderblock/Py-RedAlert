@@ -3,11 +3,11 @@ print(">Setting up.")
 import feedparser, time, smtplib
 
 server = smtplib.SMTP("smtp.gmail.com", 587)
+server.starttls()
 
 #Get user information from user:
 account = str(raw_input("Enter Google Talk account username: (Example: username123) "))
 password = str(raw_input("Enter Google Talk account password: (Example: abc123) "))
-server.starttls()
 server.login(account+'@gmail.com', password)
 
 redditRSS = feedparser.parse('http://www.reddit.com/r/photoshopbattles/new/.rss')
@@ -40,4 +40,4 @@ while(1):
     else:
         print("No new post.")
 
-    time.sleep(5)
+    time.sleep(15)
