@@ -1,7 +1,14 @@
+print(">Setting up.")
+
 import feedparser, time
 
+redditRSS = feedparser.parse('http://www.reddit.com/r/photoshopbattles/new/.rss')
+post = "New post. "+redditRSS['entries'][0]['title']+redditRSS.entries[0].published
+
+print(">Entering main while loop.")
 #Main loop.
 while(1):
+    print(">Loading RSS feed to parse.")
     #RSS feed to parse.
     redditRSS = feedparser.parse('http://www.reddit.com/r/photoshopbattles/new/.rss')
 
@@ -10,7 +17,8 @@ while(1):
 
     #Check if the post has changed since last loop.
     if post != newPost:
-        print("New post!")
+        print("New post!\n")
+        print newPost
         post = newPost
 
     else:
