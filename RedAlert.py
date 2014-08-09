@@ -13,7 +13,7 @@ while(1):
     redditRSS = feedparser.parse('http://www.reddit.com/r/photoshopbattles/new/.rss')
 
     #Make a string out of some of the items in the RSS feed.
-    newPost = "New post. "+redditRSS['entries'][0]['title']+redditRSS.entries[0].published
+    newPost = "New post. "+redditRSS['entries'][0]['title']+' Time and Date posted: '+redditRSS.entries[0].published
 
     #Check if the post has changed since last loop.
     if post != newPost:
@@ -24,4 +24,4 @@ while(1):
     else:
         print("No new post.")
 
-    time.sleep(30)
+    time.sleep(1)
