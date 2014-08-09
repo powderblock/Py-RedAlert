@@ -1,9 +1,23 @@
 print(">Setting up.")
 
-import feedparser, time
+import feedparser, time, smtplib
+
+server = smtplib.SMTP("smtp.gmail.com", 587)
+
+#Get user information from user:
+account = str(raw_input("Enter Google Talk account username: (Example: username123) "))
+password = str(raw_input("Enter Google Talk account password: (Example: abc123) "))
+server.starttls()
+server.login(account+'@gmail.com', password)
 
 redditRSS = feedparser.parse('http://www.reddit.com/r/photoshopbattles/new/.rss')
 post = "New post. "+redditRSS['entries'][0]['title']+redditRSS.entries[0].published
+
+#Get number to text:
+number = str(raw_input("Enter a number to text. (Example: 1234567890) "))
+
+#Get SMS gateway:
+gateway = str(raw_input("Enter SMS gateway domain. (AT&T: txt.att.net, T-Mobile: tmomail.net) "))
 
 print(">Entering main while loop.")
 #Main loop.
@@ -19,9 +33,11 @@ while(1):
     if post != newPost:
         print("New post!\n")
         print newPost
+        #Send alert to phone.
+        server.sendmail('', number+'@'+gateway, newPost)
         post = newPost
 
     else:
         print("No new post.")
 
-    time.sleep(1)
+    time.sleep(5)
