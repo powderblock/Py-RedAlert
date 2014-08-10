@@ -16,7 +16,7 @@ number = str(raw_input("Enter a number to text. (Example: 1234567890) "))
 gateway = str(raw_input("Enter SMS gateway domain. (AT&T: txt.att.net, T-Mobile: tmomail.net) "))
 
 redditRSS = feedparser.parse('http://www.reddit.com/r/photoshopbattles/new/.rss')
-post = "New post. "+redditRSS['entries'][0]['title']+redditRSS.entries[0].published
+post = "New post. "+redditRSS['entries'][0]['title']+' Time and Date posted: '+redditRSS.entries[0].published
 
 print(">Entering main while loop.")
 #Main loop.
