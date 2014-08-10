@@ -21,6 +21,7 @@ post = "New post. "+redditRSS['entries'][0]['title']+redditRSS.entries[0].publis
 print(">Entering main while loop.")
 #Main loop.
 while(1):
+    server.login(account+'@gmail.com', password)
     print(">Loading RSS feed to parse.")
     #RSS feed to parse.
     redditRSS = feedparser.parse('http://www.reddit.com/r/photoshopbattles/new/.rss')
@@ -33,7 +34,6 @@ while(1):
         print("New post!\n")
         print newPost
         #Send alert to phone.
-        server.login(account+'@gmail.com', password)
         server.sendmail('', number+'@'+gateway, newPost)
         post = newPost
 
