@@ -1,5 +1,3 @@
-print(">Setting up.")
-
 import feedparser, time, smtplib
 
 server = smtplib.SMTP("smtp.gmail.com", 587)
@@ -18,7 +16,6 @@ gateway = str(raw_input("Enter SMS gateway domain. (AT&T: txt.att.net, T-Mobile:
 redditRSS = feedparser.parse('http://www.reddit.com/r/photoshopbattles/new/.rss')
 post = "New post. "+redditRSS['entries'][0]['title']+' Time and Date posted: '+redditRSS.entries[0].published
 
-print(">Entering main while loop.")
 #Main loop.
 while(1):
     server.login(account+'@gmail.com', password)
